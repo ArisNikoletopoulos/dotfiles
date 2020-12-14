@@ -1,4 +1,4 @@
-#define PATH(name)                      "/home/amnesia/Scripts/blocks/"name
+#define PATH(name)                      "/home/amnesia/scripts/blocks/"name
 
 /* If interval of a block is set to 0, the block will only be updated once at startup.
  * If interval is set to a negative value, the block will never be updated in the main loop.
