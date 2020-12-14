@@ -1,0 +1,159 @@
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'OmniSharp/omnisharp-vim'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'itchyny/lightline.vim'
+Plug 'ycm-core/YouCompleteMe'
+Plug 'mhinz/vim-startify'
+Plug 'mbbill/undotree'
+Plug 'preservim/nerdtree'
+Plug 'ryanoasis/vim-devicons'
+Plug 'tpope/vim-surround'
+Plug 'preservim/nerdcommenter'
+Plug 'ap/vim-css-color'
+Plug 'francoiscabrol/ranger.vim'
+
+Plug 'arcticicestudio/nord-vim'
+Plug 'morhetz/gruvbox'
+Plug 'shinchu/lightline-gruvbox.vim'
+
+call plug#end()
+
+set nocompatible
+filetype indent plugin on
+syntax enable
+
+set completeopt=menuone
+set backspace=indent,eol,start
+set ignorecase
+set expandtab
+set shiftround
+set shiftwidth=4
+set softtabstop=-1
+set tabstop=4
+set textwidth=80
+set title
+
+set wildmenu
+set hidden
+set nofixendofline
+set nostartofline
+set splitbelow
+set splitright
+
+set hlsearch
+set incsearch
+set laststatus=2
+set relativenumber
+set number
+set nohlsearch
+set nowrap
+set noshowmode
+set signcolumn=yes
+set showcmd
+set cmdheight=2
+
+set noswapfile
+set nobackup
+set undodir=~/.vim/undodir
+set undofile
+set viminfo+=n~/.vim/viminfo
+
+set updatetime=50
+set mouse=a
+
+set background=dark
+colorscheme gruvbox "nord
+
+hi Normal ctermbg=NONE
+hi SignColumn ctermbg=NONE
+hi YcmErrorSign ctermbg=NONE ctermfg=167
+hi YcmWarningSign ctermbg=NONE ctermfg=214
+
+let g:ycm_global_ycm_extra_conf = '/home/amnesia/.vim/plugged/YouCompleteMe/.ycm_extra_conf.py'
+let g:ycm_min_num_of_chars_for_completion = 1
+let g:ycm_auto_hover = ''
+let g:ycm_error_symbol = 'ﰲ'
+let g:ycm_warning_symbol = 'ﰲ'
+
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+let g:NERDTreeShowHidden = 1
+let g:NERDTreeHighlightCursorLine = 1
+let g:NERDTreeHijackNetrw = 0
+
+let g:ranger_command_override = 'ranger --cmd "set show_hidden=true"'
+
+let g:OmniSharp_popup_options = {
+\ 'highlight': 'Normal',
+\ 'padding': [1],
+\ 'border': [1]
+\} 
+
+let g:lightline = {
+      \ 'colorscheme': 'gruvbox' 
+     \ }
+
+let g:startify_files_number = 18
+let g:startify_custom_indices = map(range(1,100), 'string(v:val)')
+let g:startify_session_persistence = 1
+let g:startify_lists = [
+  \ { 'type': 'dir',       'header': ['   Recent files'] },
+  \ { 'type': 'sessions',  'header': ['   Saved sessions'] },
+  \ ]
+let g:startify_custom_header = [
+\'  __      _______ __  __ ',
+\'  \ \    / /_   _|  \/  |',
+\'   \ \  / /  | | | \  / |',
+\'    \ \/ /   | | | |\/| |',
+\'     \  /   _| |_| |  | |',
+\'      \/   |_____|_|  |_|',
+\'                         ',
+\'                         ']
+
+let mapleader = " "
+
+nnoremap <C-s> :w<cr>
+inoremap <C-s> <C-c>:w<cr>
+
+nnoremap <leader>ls :SSave<cr>
+"nnoremap <leader>ll :SClose<CR>
+nnoremap <leader>ll :Startify<cr>
+
+noremap <leader>p "_dP
+map <C-p> "+P
+
+vnoremap <leader>y "+y
+nnoremap <leader>y "+y
+
+map <leader>nn :NERDTreeToggle<cr>
+map <leader>u :UndotreeToggle<cr>
+
+nmap <silent> <leader>d <plug>(YCMHover)
+nnoremap <leader>gd :YcmCompleter GoTo<cr>
+nnoremap <leader>rr :YcmCompleter RefactorRename<space>
+
+map <leader>tn :tabnew<cr>
+noremap <S-l> gt
+noremap <S-h> gT
+
+noremap <C-c> <C-w>c
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
+
+nnoremap Q @q
+vnoremap Q :norm @q<cr>
+
+nmap >> <Nop>
+nmap << <Nop>
+vmap >> <Nop>
+vmap << <Nop>
+nnoremap <Tab>   >>
+nnoremap <S-Tab> <<
+vnoremap <Tab>   >><Esc>gv
+vnoremap <S-Tab> <<<Esc>gv
