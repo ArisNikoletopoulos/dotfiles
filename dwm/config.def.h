@@ -2,18 +2,18 @@
 
 /* appearance */
 static const unsigned int borderpx = 3;
-static const int gappx = 40;               
-static const unsigned int snap = 2;       
-static const int swallowfloating = 0;    
-static const int showbar = 1; 
-static const int topbar = 1;       
-static const int user_bh = 28;       
-static const int horizpadbar = 5;       
-static const int vertpadbar = 0;      
-static const unsigned int systraypinning = 2;   
-static const unsigned int systrayspacing = 2;   
-static const int systraypinningfailfirst = 1;   
-static const int showsystray = 1;     
+static const int gappx = 40;
+static const unsigned int snap = 2;
+static const int swallowfloating = 0;
+static const int showbar = 1;
+static const int topbar = 1;
+static const int user_bh = 28;
+static const int horizpadbar = 5;
+static const int vertpadbar = 0;
+static const unsigned int systraypinning = 2;
+static const unsigned int systrayspacing = 2;
+static const int systraypinningfailfirst = 1;
+static const int showsystray = 1;
 
 static const char *fonts[] = { "Roboto:style=Bold:size=13" };
 
@@ -83,7 +83,6 @@ static const Rule rules[] = {
 	{ "Pavucontrol", NULL, NULL,		0,    	0,      		1,  		0,  		0,  		-1, 		0,0,968,581,    	3 },
 	{ "Pamac-manager", NULL, NULL,		0,    	0,      		1,  		0,  		0,  		-1, 		374,147,1172,786,   3 },
 	{ "Lxpolkit", NULL, NULL,		    0,    	0,      		1,  		0,  		0,  		-1, 		0,0,276,21, 		3 },
-	{ "Alacritty", NULL, NULL, 	    	0,    	0,      		0,  		1,  		0,  		-1, 		0,0,1794,966,   	3 },
 	{ "Termite", NULL, NULL, 	    	0,    	0,      		0,  		1,  		0,  		-1, 		0,0,0,0,    		3 },
 	{ NULL, NULL, "Event Tester",		0,    	0,      		0,  		0,  		1,  		-1, 		0,0,0,0,    		3 },
 	{ "Gsimplecal", NULL, NULL,	    	0,    	1,      		1,  		0,  		0,  		-1, 		1590,32,250,205,    0 },
@@ -96,12 +95,12 @@ static const Rule rules[] = {
 };
 
 /* layout(s) */
-static const float mfact     = 0.65; 
-static const int nmaster     = 1;    
-static const int resizehints = 1;    
+static const float mfact     = 0.65;
+static const int nmaster     = 1;
+static const int resizehints = 1;
 
 static const Layout layouts[] = {
-	{ "[]=",      tile },    
+	{ "[]=",      tile },
 	{ "[M]",      monocle },
 	{ NULL,       NULL },
 };
@@ -118,11 +117,11 @@ static const Layout layouts[] = {
 
 /* commands */
 static const char *roficmd[] = { "rofi", "-show", "combi", NULL };
-static const char *termcmd[] = { "alacritty", NULL };
+static const char *termcmd[] = { "termite", NULL };
 static const char *bravecmd[] = { "brave", NULL };
 static const char *braveinccmd[] = { "brave", "--incognito", NULL };
-static const char *rangercmd[] = { "alacritty", "-e", "ranger", NULL };
-static const char *vimcmd[] = { "alacritty", "-e", "vim", NULL };
+static const char *rangercmd[] = { "termite", "-e", "ranger", NULL };
+static const char *vimcmd[] = { "termite", "-e", "vim", NULL };
 static const char *spotifycmd[] = { "spotify", NULL };
 static const char *unitycmd[] = { "unityhub", NULL };
 static const char *quitcmd[] = { "killall", "xinit", NULL };
@@ -141,7 +140,7 @@ static const char *keyboardblocksigcmd[] = { "keyboard_layout_toggle.sh", "--sig
 static const char *keyboardtogglecmd[] = { "keyboard_layout_toggle.sh", NULL };
 
 static Key keys[] = {
-	
+
 	/* apps */
 	{ MODKEY,				/*d*/ 40,		spawn,			{.v = roficmd } },
 	{ MODKEY,				/*Return*/ 36,	spawn,			{.v = termcmd } },
@@ -207,7 +206,7 @@ static Key keys[] = {
 	TAGKEYS(                /*7*/ 16,           6)
 	TAGKEYS(                /*8*/ 17,           7)
 	TAGKEYS(                /*9*/ 18,           8)
-	
+
 	TAGKEYS(                /*1*/ 87,           0)
 	TAGKEYS(                /*2*/ 88,           1)
 	TAGKEYS(                /*3*/ 89,           2)
@@ -246,4 +245,3 @@ static Button buttons[] = {
 //	{ ClkRootWin,          	0,              Button5,        shiftview,	{.i = +1 } },
 
 };
-

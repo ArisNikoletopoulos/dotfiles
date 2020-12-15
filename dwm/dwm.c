@@ -370,7 +370,7 @@ applyrules(Client *c)
 	c->iscentered = 0;
 	c->isfloating = 0;
 	c->tags = 0;
-			
+
 
 	XGetClassHint(dpy, c->win, &ch);
 	class    = ch.res_class ? ch.res_class : broken;
@@ -2144,7 +2144,7 @@ showhide(Client *c)
 	if (!c)
 		return;
 	if (ISVISIBLE(c)) {
-		/* 
+		/*
 		if ((c->tags & SPTAGMASK) && c->isfloating) {
 			c->x = c->mon->wx + (c->mon->ww / 2 - WIDTH(c) / 2);
 			c->y = c->mon->wy + (c->mon->wh / 2 - HEIGHT(c) / 2);
@@ -3139,6 +3139,8 @@ focusmaster(const Arg *arg)
 
 	c = nexttiled(selmon->clients);
 
-	if (c)
+	if (c) {
 		focus(c);
+		restack(selmon);
+    }
 }
