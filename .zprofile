@@ -8,5 +8,5 @@ export BROWSER="brave"
 
 export EDITOR="vim"
 export VIMINIT='source $VIMRC'
-export VIMRC='~/.vim/vimrc'  
+export VIMRC='~/.config/nvim/init.vim'  
 

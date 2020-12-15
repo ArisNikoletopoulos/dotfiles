@@ -1,11 +1,8 @@
 
+
 call plug#begin('~/.vim/plugged')
 
-Plug 'OmniSharp/omnisharp-vim'
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
-Plug 'ycm-core/YouCompleteMe'
 Plug 'mhinz/vim-startify'
 Plug 'mbbill/undotree'
 Plug 'preservim/nerdtree'
@@ -18,6 +15,9 @@ Plug 'francoiscabrol/ranger.vim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'morhetz/gruvbox'
 Plug 'shinchu/lightline-gruvbox.vim'
+
+Plug 'ycm-core/YouCompleteMe'
+Plug 'OmniSharp/omnisharp-vim'
 
 call plug#end()
 
@@ -43,7 +43,6 @@ set nostartofline
 set splitbelow
 set splitright
 
-set hlsearch
 set incsearch
 set laststatus=2
 set relativenumber
@@ -61,11 +60,15 @@ set undodir=~/.vim/undodir
 set undofile
 set viminfo+=n~/.vim/viminfo
 
-set updatetime=50
+set ttyfast
+set updatetime=300
 set mouse=a
 
 set background=dark
 colorscheme gruvbox "nord
+
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[2 q"
 
 hi Normal ctermbg=NONE
 hi SignColumn ctermbg=NONE
@@ -91,10 +94,10 @@ let g:OmniSharp_popup_options = {
 \ 'highlight': 'Normal',
 \ 'padding': [1],
 \ 'border': [1]
-\} 
+\}
 
 let g:lightline = {
-      \ 'colorscheme': 'gruvbox' 
+      \ 'colorscheme': 'gruvbox'
      \ }
 
 let g:startify_files_number = 18
@@ -115,6 +118,26 @@ let g:startify_custom_header = [
 \'                         ']
 
 let mapleader = " "
+
+if ! has('gui_running')
+    set ttimeoutlen=10
+    augroup FastEscape
+        autocmd!
+        au InsertEnter * set timeoutlen=0
+        au InsertLeave * set timeoutlen=1000
+    augroup END
+endif
+
+" Automatically deletes all trailing whitespace and newlines at end of file on save.
+autocmd BufWritePre * %s/\s\+$//e
+autocmd BufWritePre * %s/\n\+\%$//e
+
+" Disables automatic commenting on newline:
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+" Save file as sudo on files that require root permission
+cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
+
 
 nnoremap <C-s> :w<cr>
 inoremap <C-s> <C-c>:w<cr>
@@ -157,3 +180,8 @@ nnoremap <Tab>   >>
 nnoremap <S-Tab> <<
 vnoremap <Tab>   >><Esc>gv
 vnoremap <S-Tab> <<<Esc>gv
+
+noremap <leader>h :set hlsearch! hlsearch?<cr>
+
+nnoremap <leader>s<leader> :%s///gc<Left><Left><Left><Left>
+nnoremap <leader>ss :%s///g<Left><Left><Left>

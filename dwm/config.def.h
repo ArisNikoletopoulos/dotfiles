@@ -74,8 +74,8 @@ static Sp scratchpads[] = {
 
 
 /* tagging */
-static const char *tags[] = { "⭘", "⭘", "⭘", "⭘", "⭘" };
-static const char *alttags[] = { "", "", "", "", "" };
+static const char *tags[] = { "⭘", "⭘", "⭘", "⭘", "⭘", "⭘" };
+static const char *alttags[] = { "", "", "", "", "", "" };
 
 static const Rule rules[] = {
 	/* class, instance, title,	tags mask    	isnotcentered	isfloating	isterminal	noswallow	monitor		float x,y,w,h   	floatborderpx*/
