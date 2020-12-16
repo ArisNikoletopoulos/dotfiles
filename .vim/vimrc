@@ -139,8 +139,10 @@ nnoremap <leader>ls :SSave<cr>
 "nnoremap <leader>ll :SClose<CR>
 nnoremap <leader>ll :Startify<cr>
 
-noremap <leader>p "_dP
-map <C-p> "+P
+noremap <leader>P "_dP
+noremap <leader>p "_dp
+map <C-P> "+P
+map <C-p> "+p
 
 vnoremap <leader>y "+y
 nnoremap <leader>y "+y
