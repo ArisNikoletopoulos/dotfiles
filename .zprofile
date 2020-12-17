@@ -3,7 +3,7 @@
 typeset -U PATH path
 path=("$HOME/.local/bin" "$path[@]")
 export PATH
-export TERMINAL="alacritty"
+export TERMINAL="termite"
 export BROWSER="brave"
 
 export EDITOR="vim"

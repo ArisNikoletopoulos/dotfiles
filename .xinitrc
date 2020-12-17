@@ -1,7 +1,7 @@
 #!/bin/sh
 
 xrandr --output HDMI-0 --mode 1920x1080 --pos 0x0 --output DP-3 --mode 1920x1080 --pos 0x0 --output HDMI1 --mode 1920x1080 --pos 1920x0 &
-sleep 2 && force-composition-pipeline.sh &
+sleep 2 && force-composition-pipeline &
 
 
 userresources=$HOME/.Xresources
@@ -37,7 +37,7 @@ fi
 
 numlockx &
 nitrogen --restore &
-tray_app_launcher.sh &
+tray_app_launcher &
 compton --config ~/.config/compton/compton.conf &
 dwmblocks &
 sleep 3 && ckb-next -b &
@@ -45,10 +45,8 @@ sleep 3 && ckb-next -b &
 #exec openbox-session
 #exec dwm
 while true; do
-	#Log stderror to a file 
+	#Log stderror to a file
 	#dwm 2> ~/.dwm.log
 	#No error logging
     dwm >/dev/null 2>&1
 done
-
-

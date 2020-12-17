@@ -6,10 +6,10 @@ export ZSH="/home/amnesia/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
 plugins=(
 	zsh-autosuggestions
-	zsh-syntax-highlighting	
+	zsh-syntax-highlighting
 )
 source $ZSH/oh-my-zsh.sh
-
+. /etc/bash.command-not-found
 
 alias n="nordvpn"
 alias nc="nordvpn connect"
@@ -20,4 +20,3 @@ alias sv="sudo vim"
 alias r="ranger"
 
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-

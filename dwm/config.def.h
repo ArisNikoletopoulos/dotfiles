@@ -8,7 +8,7 @@ static const int swallowfloating = 0;
 static const int showbar = 1;
 static const int topbar = 1;
 static const int user_bh = 28;
-static const int horizpadbar = 5;
+static const int horizpadbar = 4;
 static const int vertpadbar = 0;
 static const unsigned int systraypinning = 2;
 static const unsigned int systrayspacing = 2;
@@ -86,7 +86,7 @@ static const Rule rules[] = {
 	{ "Termite", NULL, NULL, 	    	0,    	0,      		0,  		1,  		0,  		-1, 		0,0,0,0,    		3 },
 	{ NULL, NULL, "Event Tester",		0,    	0,      		0,  		0,  		1,  		-1, 		0,0,0,0,    		3 },
 	{ "Gsimplecal", NULL, NULL,	    	0,    	1,      		1,  		0,  		0,  		-1, 		1590,32,250,205,    0 },
-	{ "Unity", NULL, NULL,		    	1 << 4,	0,      		0,  		0,  		0,  		 0, 		0,0,1200,800,   	3 },
+	{ "Unity", NULL, NULL,		    	1 << 5,	0,      		0,  		0,  		0,  		 1, 		0,0,1200,800,   	3 },
 
 	{ "Gnome-calculator", NULL, NULL,	SPTAG(0),0,     		1,  		1,  		0,  		-1, 		0,0,612,500,    	3 },
 	{ NULL, NULL, "bashtop",	    	SPTAG(1),0,     		1,  		1,  		0,  		-1, 		0,0,1118,668,	    3 },
@@ -151,7 +151,7 @@ static Key keys[] = {
 	{ MODKEY,				/*s*/ 39,		spawn,			{.v = spotifycmd } },
 	{ MODKEY,				/*u*/ 30,		spawn,			{.v = unitycmd } },
 
-	{ MODKEY,				/*t*/ 28,  	   	togglescratch,  	{.ui = 0 } },
+	{ MODKEY,				/*c*/ 54,  	   	togglescratch,  	{.ui = 0 } },
 	{ MODKEY,				/*y*/ 29,	   	togglescratch,  	{.ui = 1 } },
 	{ MODKEY,				/*p*/ 33,	   	togglescratch,  	{.ui = 2 } },
 	{ MODKEY|ShiftMask,		/*Return*/ 36,	togglescratch,  	{.ui = 3 } },
