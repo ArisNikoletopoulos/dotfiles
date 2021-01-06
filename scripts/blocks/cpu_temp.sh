@@ -9,7 +9,7 @@ ICON5="" # icon for normal temperatures
 temp1=35
 temp2=55
 temp3=65
-temp4=75
+temp4=85
 
 temp=$(sensors | grep 'Package id 0:' | awk '{print $4}' | sed 's/+//'| sed 's/.0°C//')
 temp=${temp%???}
@@ -25,4 +25,3 @@ elif [ "$temp" -ge "$temp1" ] ; then
 else
     echo "${ICON1}${temp}°C"
 fi
-

@@ -18,6 +18,7 @@ Plug 'preservim/nerdcommenter'
 Plug 'ap/vim-css-color'
 Plug 'francoiscabrol/ranger.vim'
 Plug 'szw/vim-maximizer'
+Plug 'junegunn/fzf'
 
 Plug 'arcticicestudio/nord-vim'
 Plug 'morhetz/gruvbox'
@@ -41,6 +42,7 @@ set softtabstop=-1
 set tabstop=4
 set textwidth=80
 set title
+set smartindent
 
 set wildmenu
 set hidden
@@ -153,10 +155,10 @@ nnoremap <leader>ls :SSave<cr>
 "nnoremap <leader>ll :SClose<CR>
 nnoremap <leader>ll :Startify<cr>
 
-noremap <leader>P "_dP
-noremap <leader>p "_dp
-map <C-P> "+P
-map <C-p> "+p
+noremap <leader>P "_dp
+noremap <leader>p "_dP
+map <C-P> "+p
+map <C-p> "+P
 
 vnoremap <leader>y "+y
 nnoremap <leader>y "+y
@@ -194,3 +196,6 @@ noremap <leader>h :set hlsearch! hlsearch?<cr>
 
 nnoremap <leader>s<leader> :%s///gc<Left><Left><Left><Left>
 nnoremap <leader>ss :%s///g<Left><Left><Left>
+
+autocmd FileType cs map <buffer> <leader>dl oDebug.Log();<Esc><Left>i
+autocmd FileType cs map <buffer> <leader>dlt oDebug.Log("");<Esc><Left><Left>i

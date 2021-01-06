@@ -11,12 +11,15 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 . /etc/bash.command-not-found
 
+#/usr/share/fzf/key-bindings.zsh
+#/usr/share/fzf/completion.zsh
+
+
 alias n="nordvpn"
 alias nc="nordvpn connect"
 alias nd="nordvpn disconnect"
 
 alias v="vim"
-alias sv="sudo vim"
 alias r="ranger"
 
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
