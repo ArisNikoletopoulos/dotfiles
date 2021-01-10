@@ -1,6 +1,5 @@
 #!/bin/sh
 case $1 in
-	1)	keyboard_layout_toggle.sh
-		sigdwmblocks 6
+	1)	keyboard_layout_toggle && sigdwmblocks 6
 	;;
 esac

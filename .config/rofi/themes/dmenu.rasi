@@ -5,21 +5,21 @@ configuration {
     combi-modi: "drun,run";
     show-icons: true;
     icon-theme: "Papirus";
-    display-combi:  "      ";
+    display-combi:  "  run:  ";
 }
 
 * {
     background-color:           #2F343F;
     border-color:               #2F343F;
     text-color:                 #929AAD;
-    height:                     27px;
+    height:                     28px;
     font:                       "Roboto Bold 11";
-    prompt-font:                "Roboto Bold 17";
-    prompt-background:          #AAC0F0;
-    prompt-foreground:          #2F343F;
-    prompt-padding:             -2px;
-    selected-normal-background: #5294E2;
-    selected-normal-foreground: #ffffff;
+    prompt-font:                "Roboto Bold 11";
+    prompt-background:          #2F343F;
+    prompt-foreground:          #AAC0F0;
+    prompt-padding:             4px;
+    selected-normal-background: #555E70;
+    selected-normal-foreground: #AAC0F0;
 }
 #window {
     anchor: north;
@@ -43,12 +43,12 @@ configuration {
     lines: 100;
 }
 #entry {
-    padding: 3px;
+    padding: 4px;
     expand: false;
     width: 10em;
 }
 #element {
-    padding: 3px 8px;
+    padding: 4px 8px;
 }
 #element selected {
     background-color: @selected-normal-background;
