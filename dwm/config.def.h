@@ -1,4 +1,4 @@
-/* See LICENSE file for copyright and license details. */
+/* :) */
 
 /* appearance */
 static const unsigned int borderpx = 3;
@@ -7,6 +7,7 @@ static const unsigned int snap = 2;
 static const int swallowfloating = 0;
 static const int showbar = 1;
 static const int topbar = 1;
+static const char buttonbar[] = "  ";
 static const int user_bh = 28;
 static const int horizpadbar = 4;
 static const int vertpadbar = 0;
@@ -47,8 +48,8 @@ static const char *colors[][3]      = {
 	[SchemeCol6]  = { col6,      col_gray1, col_gray2 },
 	[SchemeCol7]  = { col7,      col_gray1, col_gray2 },
 	[SchemeCol8]  = { col8,      col_gray1, col_gray2 },
-	[SchemeCol9]  = { col8,      col_gray1, col_gray2 },
-	[SchemeHid]   = { col_gray2, col_gray1, col_gray2 },
+	[SchemeCol9]  = { col_gray4, col12,  col_gray2  },
+	[SchemeHid]   = { col12, col_gray1, col_gray2 },
 	[SchemeTagNorm] = { col_gray2, col_gray1, col_gray2 },
 	[SchemeTagFill] = { col_gray3, col_gray1, col_gray2 },
 	[SchemeTagSel] = { col_gray4, col_gray1, col_gray2 },
@@ -136,66 +137,60 @@ static const char *mutecmd[] = { "amixer", "-q", "-D", "pulse", "sset", "Master"
 static const char *volumedowncmd[] = { "amixer", "-q", "-D", "pulse", "sset", "Master", "5%-", NULL };
 static const char *volumeupcmd[] = { "amixer", "-q", "-D", "pulse", "sset", "Master", "5%+", NULL };
 
-static const char *keyboardblocksigcmd[] = { "keyboard_layout_toggle.sh", "--sig", NULL };
-static const char *keyboardtogglecmd[] = { "keyboard_layout_toggle.sh", NULL };
-
 static Key keys[] = {
 
 	/* apps */
-	{ MODKEY,				/*d*/ 40,		spawn,			{.v = roficmd } },
-	{ MODKEY,				/*Return*/ 36,	spawn,			{.v = termcmd } },
-	{ MODKEY,				/*w*/ 25,		spawn,			{.v = bravecmd } },
-	{ MODKEY|ShiftMask,		/*w*/ 25,		spawn,			{.v = braveinccmd } },
-	{ MODKEY,				/*e*/ 26,		spawn,			{.v = rangercmd } },
-	{ MODKEY,				/*v*/ 55,		spawn,			{.v = vimcmd } },
-	{ MODKEY,				/*s*/ 39,		spawn,			{.v = spotifycmd } },
-	{ MODKEY,				/*u*/ 30,		spawn,			{.v = unitycmd } },
+	{ MODKEY,				/*d*/ 40,		spawn,	    	{.v = roficmd } },
+	{ MODKEY,				/*Return*/ 36,	spawn,	    	{.v = termcmd } },
+	{ MODKEY,				/*w*/ 25,		spawn,	    	{.v = bravecmd } },
+	{ MODKEY|ShiftMask,		/*w*/ 25,		spawn,	    	{.v = braveinccmd } },
+	{ MODKEY,				/*e*/ 26,		spawn,	    	{.v = rangercmd } },
+	{ MODKEY,				/*v*/ 55,		spawn,	    	{.v = vimcmd } },
+	{ MODKEY,				/*s*/ 39,		spawn,	    	{.v = spotifycmd } },
+	{ MODKEY,				/*u*/ 30,		spawn,	    	{.v = unitycmd } },
 
-	{ MODKEY,				/*c*/ 54,  	   	togglescratch,  	{.ui = 0 } },
-	{ MODKEY,				/*y*/ 29,	   	togglescratch,  	{.ui = 1 } },
-	{ MODKEY,				/*p*/ 33,	   	togglescratch,  	{.ui = 2 } },
-	{ MODKEY|ShiftMask,		/*Return*/ 36,	togglescratch,  	{.ui = 3 } },
+	{ MODKEY,				/*c*/ 54,  	   	togglescratch, 	{.ui = 0 } },
+	{ MODKEY,				/*y*/ 29,	   	togglescratch, 	{.ui = 1 } },
+	{ MODKEY,				/*p*/ 33,	   	togglescratch, 	{.ui = 2 } },
+	{ MODKEY|ShiftMask,		/*Return*/ 36,	togglescratch, 	{.ui = 3 } },
 
 	/* dwm  control */
-	{ MODKEY,				/*q*/ 24,		killclient,		{0} },
-	{ MODKEY|ShiftMask,		/*r*/ 27,		quit,			{0} },
-	{ MODKEY|ShiftMask,		/*q*/ 24,		spawn,			{.v = quitcmd } },
-	{ MODKEY,               /*b*/ 56,      	togglebar,      	{0} },
-	{ MODKEY,				/*space*/ 65,	togglefloating,		{0} },
-	{ MODKEY,				/*m*/ 58,		cyclelayout,		{.i = +1 } },
+	{ MODKEY,				/*q*/ 24,		killclient,	   	{0} },
+	{ MODKEY|ShiftMask,		/*r*/ 27,		quit,		   	{0} },
+	{ MODKEY|ShiftMask,		/*q*/ 24,		spawn,		   	{.v = quitcmd } },
+	{ MODKEY,               /*b*/ 56,      	togglebar,     	{0} },
+	{ MODKEY,				/*space*/ 65,	togglefloating,	{0} },
+	{ MODKEY,				/*m*/ 58,		cyclelayout,	{.i = +1 } },
 
 	/* navigation*/
-	{ MODKEY,               /*j*/ 44,      	focusstack,     	{.i = +1 } },
-	{ MODKEY,               /*k*/ 45,      	focusstack,     	{.i = -1 } },
-	{ MODKEY|ShiftMask,		/*j*/ 44,		movestack,		{.i = +1 } },
-	{ MODKEY|ShiftMask,		/*k*/ 45,		movestack,		{.i = -1 } },
-	{ MODKEY|ControlMask,	/*j*/ 44,		setcfact,		{.f = +0.25} },
-	{ MODKEY|ControlMask,	/*k*/ 45,		setcfact,		{.f = -0.25} },
-	{ MODKEY|Mod1Mask,		/*j*/ 44,		shiftview,		{.i = -1 } },
-	{ MODKEY|Mod1Mask,		/*k*/ 45,		shiftview,		{.i = +1 } },
+	{ MODKEY,               /*j*/ 44,      	focusstackvis,  {.i = +1 } },
+	{ MODKEY,               /*k*/ 45,      	focusstackvis,  {.i = -1 } },
+	{ MODKEY|ShiftMask,		/*j*/ 44,		movestack,  	{.i = +1 } },
+	{ MODKEY|ShiftMask,		/*k*/ 45,		movestack,  	{.i = -1 } },
+	{ MODKEY|ControlMask,	/*j*/ 44,		setcfact,   	{.f = +0.25} },
+	{ MODKEY|ControlMask,	/*k*/ 45,		setcfact,   	{.f = -0.25} },
+	{ MODKEY|Mod1Mask,		/*j*/ 44,		shiftview,  	{.i = -1 } },
+	{ MODKEY|Mod1Mask,		/*k*/ 45,		shiftview,  	{.i = +1 } },
 
-	{ MODKEY,				/*h*/ 43,		focusmaster,		{0} },
-	{ MODKEY,				/*l*/ 46,		focusstack,		{.i = +1}  },
-	{ MODKEY|ShiftMask,		/*h*/ 43,		zoom,			{0} },
-	{ MODKEY|ShiftMask,		/*l*/ 46,		zoom,			{0} },
-	{ MODKEY|ControlMask,	/*h*/ 43,		setmfact,		{.f = -0.05} },
-	{ MODKEY|ControlMask,	/*l*/ 46,		setmfact,		{.f = +0.05} },
+	{ MODKEY,				/*h*/ 43,		focusmaster,	{0} },
+	{ MODKEY,				/*l*/ 46,		focusstackvis,	{.i = +1}  },
+	{ MODKEY|ShiftMask,		/*h*/ 43,		zoom,	    	{0} },
+	{ MODKEY|ShiftMask,		/*l*/ 46,		zoom,	    	{0} },
+	{ MODKEY|ControlMask,	/*h*/ 43,		setmfact,   	{.f = -0.05} },
+	{ MODKEY|ControlMask,	/*l*/ 46,		setmfact,   	{.f = +0.05} },
 
-	{ MODKEY,				/*o*/ 32,		focusmon,		{.i = +1 } },
-	{ MODKEY|ShiftMask,		/*o*/ 32,		tagmon,			{.i = +1 } },
+	{ MODKEY,				/*o*/ 32,		focusmon,   	{.i = +1 } },
+	{ MODKEY|ShiftMask,		/*o*/ 32,		tagmon,	    	{.i = +1 } },
 
 	/* spotify control */
-	{ MODKEY,				/*F10*/ 76,		spawn,			{.v = spotifycmd_previous } },
-	{ MODKEY,				/*F11*/ 95,		spawn,			{.v = spotifycmd_play } },
-	{ MODKEY,				/*F12*/ 96,		spawn,			{.v = spotifycmd_next } },
+	{ MODKEY,				/*F10*/ 76,		spawn,	    	{.v = spotifycmd_previous } },
+	{ MODKEY,				/*F11*/ 95,		spawn,	    	{.v = spotifycmd_play } },
+	{ MODKEY,				/*F12*/ 96,		spawn,	    	{.v = spotifycmd_next } },
 
 	/* volumec ontrol */
-	{ MODKEY,				/*F5*/ 71,		spawn,			{.v = mutecmd } },
-	{ MODKEY,				/*F7*/ 73,		spawn,			{.v = volumedowncmd } },
-	{ MODKEY,				/*F8*/ 74,		spawn,			{.v = volumeupcmd } },
-
-	{ 0,					/*Caps*/ 66,	spawn,			{.v = keyboardblocksigcmd } },
-	//{ ShiftMask,		XK_x,	spawn,			{.v = keyboardtogglecmd } },
+	{ MODKEY,				/*F5*/ 71,		spawn,	    	{.v = mutecmd } },
+	{ MODKEY,				/*F7*/ 73,		spawn,	    	{.v = volumedowncmd } },
+	{ MODKEY,				/*F8*/ 74,		spawn,	    	{.v = volumeupcmd } },
 
 	TAGKEYS(                /*1*/ 10,           0)
 	TAGKEYS(                /*2*/ 11,           1)
@@ -219,29 +214,26 @@ static Key keys[] = {
 };
 
 /* button definitions */
-/* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
 static Button buttons[] = {
 	/* click                event mask      button          function        argument */
-	{ ClkLtSymbol,		0,              Button1,        cyclelayout,	{.i = +1 } },
-	{ ClkLtSymbol,          0,              Button3,        cyclelayout,	{.i = -1 } },
 
-	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
-	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
-	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
-
-	{ ClkWinTitle,         	0,		Button2,        killclient,	{0} },
-	{ ClkWinTitle,          0,              Button4,        shiftview,	{.i = -1 } },
-	{ ClkWinTitle,          0,              Button5,        shiftview,	{.i = +1 } },
+	{ ClkButton,		    0,      		Button1,	    spawn,		    {.v = roficmd } },
 
 	{ ClkTagBar,            0,              Button1,        view,           {0} },
 	{ ClkTagBar,            0,              Button3,        toggleview,     {0} },
-	{ ClkTagBar,            0,              Button4,        shiftview,	{.i = -1 } },
-	{ ClkTagBar,            0,              Button5,        shiftview,	{.i = +1 } },
+	{ ClkTagBar,            0,              Button4,        shiftview,	    {.i = -1 } },
+	{ ClkTagBar,            0,              Button5,        shiftview,	    {.i = +1 } },
+
+	{ ClkWinTitle,          0,              Button1,        togglewin,      {0} },
+	{ ClkWinTitle,         	0,		        Button2,        killclient, 	{0} },
+	{ ClkWinTitle,          0,              Button4,        shiftview,	    {.i = -1 } },
+	{ ClkWinTitle,          0,              Button5,        shiftview,	    {.i = +1 } },
 
 	{ ClkStatusText,        0,              Button1,        sigdwmblocks,  	{.i = 1} },
 	{ ClkStatusText,        0,              Button2,        sigdwmblocks,  	{.i = 2} },
 
-//	{ ClkRootWin,          	0,              Button4,        shiftview,	{.i = -1 } },
-//	{ ClkRootWin,          	0,              Button5,        shiftview,	{.i = +1 } },
 
+	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
+	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
+	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
 };
