@@ -27,6 +27,8 @@ Plug 'shinchu/lightline-gruvbox.vim'
 Plug 'ycm-core/YouCompleteMe'
 Plug 'OmniSharp/omnisharp-vim'
 
+Plug 'habamax/vim-godot'
+
 call plug#end()
 
 filetype indent plugin on
@@ -40,7 +42,7 @@ set shiftround
 set shiftwidth=4
 set softtabstop=-1
 set tabstop=4
-set textwidth=80
+set formatoptions-=tc
 set title
 set smartindent
 
@@ -91,6 +93,20 @@ let g:ycm_auto_hover = ''
 let g:ycm_error_symbol = 'ﰲ'
 let g:ycm_warning_symbol = 'ﰲ'
 let g:ycm_key_list_stop_completion = ['<Enter>', '<Left>']
+
+if !has_key( g:, 'ycm_language_server' )
+  let g:ycm_language_server = []
+endif
+
+let g:ycm_language_server += [
+  \   {
+  \     'name': 'godot',
+  \     'filetypes': [ 'gdscript' ],
+  \     'project_root_files': [ 'project.godot' ],
+  \     'port': 6008
+  \   }
+  \ ]
+
 
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let g:NERDTreeDirArrowExpandable = '▸'

@@ -49,7 +49,7 @@ static const char *colors[][3]      = {
 	[SchemeCol7]  = { col7,      col_gray1, col_gray2 },
 	[SchemeCol8]  = { col8,      col_gray1, col_gray2 },
 	[SchemeCol9]  = { col_gray4, col12,  col_gray2  },
-	[SchemeHid]   = { col12, col_gray1, col_gray2 },
+	[SchemeHid]   = { col_gray2, col_gray1, col_gray1 },
 	[SchemeTagNorm] = { col_gray2, col_gray1, col_gray2 },
 	[SchemeTagFill] = { col_gray3, col_gray1, col_gray2 },
 	[SchemeTagSel] = { col_gray4, col_gray1, col_gray2 },
@@ -88,6 +88,8 @@ static const Rule rules[] = {
 	{ NULL, NULL, "Event Tester",		0,    	0,      		0,  		0,  		1,  		-1, 		0,0,0,0,    		3 },
 	{ "Gsimplecal", NULL, NULL,	    	0,    	1,      		1,  		0,  		0,  		-1, 		1590,32,250,205,    0 },
 	{ "Unity", NULL, NULL,		    	1 << 5,	0,      		0,  		0,  		0,  		 1, 		0,0,1200,800,   	3 },
+	{ "Godot", NULL, NULL,		    	1 << 5,	0,      		0,  		0,  		0,  		 1, 		0,0,1200,800,   	3 },
+	{ "jetbrains-studio", NULL, NULL,	1 << 5,	0,      		1,  		0,  		0,  		 1, 		0,0,1200,800,   	3 },
 
 	{ "Gnome-calculator", NULL, NULL,	SPTAG(0),0,     		1,  		1,  		0,  		-1, 		0,0,612,500,    	3 },
 	{ NULL, NULL, "bashtop",	    	SPTAG(1),0,     		1,  		1,  		0,  		-1, 		0,0,1118,668,	    3 },
@@ -125,6 +127,7 @@ static const char *rangercmd[] = { "termite", "-e", "ranger", NULL };
 static const char *vimcmd[] = { "termite", "-e", "vim", NULL };
 static const char *spotifycmd[] = { "spotify", NULL };
 static const char *unitycmd[] = { "unityhub", NULL };
+static const char *godotcmd[] = { "godot", NULL };
 static const char *quitcmd[] = { "killall", "xinit", NULL };
 
 /* spotify control commands */
@@ -148,6 +151,7 @@ static Key keys[] = {
 	{ MODKEY,				/*v*/ 55,		spawn,	    	{.v = vimcmd } },
 	{ MODKEY,				/*s*/ 39,		spawn,	    	{.v = spotifycmd } },
 	{ MODKEY,				/*u*/ 30,		spawn,	    	{.v = unitycmd } },
+	{ MODKEY,				/*g*/ 42,		spawn,	    	{.v = godotcmd } },
 
 	{ MODKEY,				/*c*/ 54,  	   	togglescratch, 	{.ui = 0 } },
 	{ MODKEY,				/*y*/ 29,	   	togglescratch, 	{.ui = 1 } },

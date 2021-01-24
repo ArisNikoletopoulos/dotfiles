@@ -1060,12 +1060,14 @@ drawbar(Monitor *m)
 			for (c = m->clients; c; c = c->next) {
 				if (!ISVISIBLE(c))
 					continue;
-				if (m->sel != c || m != selmon)
-					scm = SchemeNorm;
-				else if (HIDDEN(c))
-					scm = SchemeHid;
-				else
+				if (m->sel == c || m != selmon)
 					scm = SchemeCol9;
+				else
+					scm = SchemeNorm;
+
+				if (HIDDEN(c))
+					scm = SchemeHid;
+
 				drw_setscheme(drw, scheme[scm]);
 
 				if (remainder >= 0) {
