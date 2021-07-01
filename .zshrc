@@ -1,4 +1,7 @@
 
+typeset -U PATH path
+path=("$HOME/.local/bin" "$path[@]")
+export PATH
 
 export ZSH_COMPDUMP="/home/amnesia/.cache/zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
 export HISTFILE="$HOME/.cache/zsh_history"

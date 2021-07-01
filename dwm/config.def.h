@@ -9,7 +9,7 @@ static const int showbar = 1;
 static const int topbar = 1;
 static const char buttonbar[] = "  ";
 static const int user_bh = 28;
-static const int horizpadbar = 4;
+static const int horizpadbar = 0;
 static const int vertpadbar = 0;
 static const unsigned int systraypinning = 2;
 static const unsigned int systrayspacing = 2;
@@ -75,8 +75,8 @@ static Sp scratchpads[] = {
 
 
 /* tagging */
-static const char *tags[] = { "⭘", "⭘", "⭘", "⭘", "⭘", "⭘" };
-static const char *alttags[] = { "", "", "", "", "", "" };
+static const char *tags[] = { "⭘","⭘","⭘", "⭘", "⭘", "⭘", "⭘", "⭘", "⭘" };
+static const char *alttags[] = { "", "", "", "", "", "", "", "", "" };
 
 static const Rule rules[] = {
 	/* class, instance, title,	tags mask    	isnotcentered	isfloating	isterminal	noswallow	monitor		float x,y,w,h   	floatborderpx*/
@@ -88,7 +88,7 @@ static const Rule rules[] = {
 	{ NULL, NULL, "Event Tester",		0,    	0,      		0,  		0,  		1,  		-1, 		0,0,0,0,    		3 },
 	{ "Gsimplecal", NULL, NULL,	    	0,    	1,      		1,  		0,  		0,  		-1, 		1590,32,250,205,    0 },
 	{ "Unity", NULL, NULL,		    	1 << 5,	0,      		0,  		0,  		0,  		 1, 		0,0,1200,800,   	3 },
-	{ "Godot", NULL, NULL,		    	1 << 5,	0,      		0,  		0,  		0,  		 1, 		0,0,1200,800,   	3 },
+	{ "Godot", NULL, NULL,		    	1 << 5,	0,      		0,  		0,  		0,  		 0, 		0,0,1200,800,   	3 },
 	{ "jetbrains-studio", NULL, NULL,	1 << 5,	0,      		1,  		0,  		0,  		 1, 		0,0,1200,800,   	3 },
 
 	{ "Gnome-calculator", NULL, NULL,	SPTAG(0),0,     		1,  		1,  		0,  		-1, 		0,0,612,500,    	3 },
@@ -122,13 +122,15 @@ static const Layout layouts[] = {
 static const char *roficmd[] = { "rofi", "-show", "combi", NULL };
 static const char *termcmd[] = { "termite", NULL };
 static const char *bravecmd[] = { "brave", NULL };
+static const char *pcmanfmcmd[] = { "pcmanfm", NULL };
 static const char *braveinccmd[] = { "brave", "--incognito", NULL };
 static const char *rangercmd[] = { "termite", "-e", "ranger", NULL };
 static const char *vimcmd[] = { "termite", "-e", "vim", NULL };
 static const char *spotifycmd[] = { "spotify", NULL };
 static const char *unitycmd[] = { "unityhub", NULL };
 static const char *godotcmd[] = { "godot", NULL };
-static const char *quitcmd[] = { "killall", "xinit", NULL };
+static const char *gimpcmd[] = { "gimp", NULL };
+static const char *quitcmd[] = { "sudo", "killall", "lightdm", NULL };
 
 /* spotify control commands */
 static const char *spotifycmd_previous[] = { "dbus-send", "--print-reply", "--dest=org.mpris.MediaPlayer2.spotify", "/org/mpris/MediaPlayer2", "org.mpris.MediaPlayer2.Player.Previous", NULL };
@@ -137,8 +139,8 @@ static const char *spotifycmd_next[] = { "dbus-send", "--print-reply", "--dest=o
 
 /* volume control commands */
 static const char *mutecmd[] = { "amixer", "-q", "-D", "pulse", "sset", "Master", "toggle", NULL };
-static const char *volumedowncmd[] = { "amixer", "-q", "-D", "pulse", "sset", "Master", "5%-", NULL };
-static const char *volumeupcmd[] = { "amixer", "-q", "-D", "pulse", "sset", "Master", "5%+", NULL };
+static const char *volumedowncmd[] = { "amixer", "-q", "-D", "pulse", "sset", "Master", "25%-", NULL };
+static const char *volumeupcmd[] = { "amixer", "-q", "-D", "pulse", "sset", "Master", "25%+", NULL };
 
 static Key keys[] = {
 
@@ -148,10 +150,12 @@ static Key keys[] = {
 	{ MODKEY,				/*w*/ 25,		spawn,	    	{.v = bravecmd } },
 	{ MODKEY|ShiftMask,		/*w*/ 25,		spawn,	    	{.v = braveinccmd } },
 	{ MODKEY,				/*e*/ 26,		spawn,	    	{.v = rangercmd } },
+	{ MODKEY|ShiftMask,		/*e*/ 26,		spawn,	    	{.v = pcmanfmcmd } },
 	{ MODKEY,				/*v*/ 55,		spawn,	    	{.v = vimcmd } },
 	{ MODKEY,				/*s*/ 39,		spawn,	    	{.v = spotifycmd } },
 	{ MODKEY,				/*u*/ 30,		spawn,	    	{.v = unitycmd } },
 	{ MODKEY,				/*g*/ 42,		spawn,	    	{.v = godotcmd } },
+	{ MODKEY|ShiftMask,		/*g*/ 42,		spawn,	    	{.v = gimpcmd } },
 
 	{ MODKEY,				/*c*/ 54,  	   	togglescratch, 	{.ui = 0 } },
 	{ MODKEY,				/*y*/ 29,	   	togglescratch, 	{.ui = 1 } },

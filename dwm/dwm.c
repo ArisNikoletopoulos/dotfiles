@@ -983,6 +983,8 @@ drawbar(Monitor *m)
 	int x, w;
     int n = 0, scm;
 	int wbar = m->ww;
+    int boxs = drw->fonts->h / 9;
+	int boxw = drw->fonts->h / 6 + 2;
 	unsigned int i, occ = 0, urg = 0;
 	const char *tagtext;
 	Client *c;
@@ -1060,7 +1062,7 @@ drawbar(Monitor *m)
 			for (c = m->clients; c; c = c->next) {
 				if (!ISVISIBLE(c))
 					continue;
-				if (m->sel == c || m != selmon)
+				if (m->sel == c && m == selmon)
 					scm = SchemeCol9;
 				else
 					scm = SchemeNorm;
@@ -1077,6 +1079,8 @@ drawbar(Monitor *m)
 					remainder--;
 				}
 				drw_text(drw, x, 0, tabw, bh, lrpad / 2, c->name, 0);
+                if (c->isfloating)
+                    drw_rect(drw, x + boxs, boxs, boxw, boxw, m->sel->isfixed, 0);
 				x += tabw;
 			}
         } else {

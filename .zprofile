@@ -1,8 +1,5 @@
 #!/bin/zsh
 
-typeset -U PATH path
-path=("$HOME/.local/bin" "$path[@]")
-export PATH
 export TERMINAL="termite"
 export BROWSER="brave"
 

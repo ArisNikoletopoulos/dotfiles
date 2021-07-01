@@ -86,6 +86,8 @@ hi CursorLine ctermbg=None
 "hi CursorLineNr ctermbg=None ctermfg=214
 hi YcmErrorSign ctermbg=NONE ctermfg=167
 hi YcmWarningSign ctermbg=NONE ctermfg=214
+hi YcmErrorSection ctermbg=NONE
+hi YcmWarningSection ctermbg=NONE
 
 let g:ycm_global_ycm_extra_conf = '/home/amnesia/.vim/plugged/YouCompleteMe/.ycm_extra_conf.py'
 let g:ycm_min_num_of_chars_for_completion = 1
@@ -93,6 +95,7 @@ let g:ycm_auto_hover = ''
 let g:ycm_error_symbol = 'ﰲ'
 let g:ycm_warning_symbol = 'ﰲ'
 let g:ycm_key_list_stop_completion = ['<Enter>', '<Left>']
+let g:ycm_server_log_level = 'error'
 
 if !has_key( g:, 'ycm_language_server' )
   let g:ycm_language_server = []
@@ -107,6 +110,17 @@ let g:ycm_language_server += [
   \   }
   \ ]
 
+func! GodotSettings() abort
+    "setlocal foldmethod=indent
+    setlocal tabstop=4
+    nnoremap <buffer> <F4> :GodotRunLast<CR>
+    nnoremap <buffer> <F5> :GodotRun<CR>
+    nnoremap <buffer> <F6> :GodotRunCurrent<CR>
+    nnoremap <buffer> <F7> :GodotRunFZF<CR>
+endfunc
+augroup godot | au!
+    au FileType gdscript call GodotSettings()
+augroup end
 
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let g:NERDTreeDirArrowExpandable = '▸'
@@ -166,18 +180,17 @@ augroup END
 
 nnoremap <C-s> :w<cr>
 inoremap <C-s> <C-c>:w<cr>
+vnoremap <C-s> <C-c>:w<cr>
 
-nnoremap <leader>ls :SSave<cr>
-"nnoremap <leader>ll :SClose<CR>
 nnoremap <leader>ll :Startify<cr>
 
-noremap <leader>P "_dp
-noremap <leader>p "_dP
-map <C-P> "+p
+noremap <leader>p "_dp
+noremap <leader>P "_dP
 map <C-p> "+P
+map <C-P> "+p
 
-vnoremap <leader>y "+y
-nnoremap <leader>y "+y
+vnoremap <C-y> "+y
+nnoremap <C-y> "+yy
 
 map <leader>nn :NERDTreeToggle<cr>
 map <leader>u :UndotreeToggle<cr>
@@ -208,10 +221,36 @@ nnoremap <S-Tab> <<
 vnoremap <Tab>   >><Esc>gv
 vnoremap <S-Tab> <<<Esc>gv
 
+nmap gcw gUw
+nmap gCw guw
+nmap gciw gUiw
+nmap gCiw guiw
+nmap gce gUe
+nmap gCe gue
+nmap gc$ gU$
+nmap gC$ gu$
+vmap gc gU
+vmap gC gu
+
 noremap <leader>h :set hlsearch! hlsearch?<cr>
 
 nnoremap <leader>s<leader> :%s///gc<Left><Left><Left><Left>
 nnoremap <leader>ss :%s///g<Left><Left><Left>
 
+vnoremap <leader>s<leader> y:%s/<C-R>"//gc<Left><Left><Left>
+vnoremap <leader>ss y:%s/<C-R>"//g<Left><Left>
+
+noremap <2-LeftMouse> za
+
 autocmd FileType cs map <buffer> <leader>dl oDebug.Log();<Esc><Left>i
 autocmd FileType cs map <buffer> <leader>dlt oDebug.Log("");<Esc><Left><Left>i
+
+vmap s` c`<C-R>"`<Esc>
+vmap s' c'<C-R>"'<Esc>
+vmap s" c"<C-R>""<Esc>
+vmap s[ c[<C-R>"]<Esc>
+vmap s] c[<C-R>"]<Esc>
+vmap s{ c{<C-R>"}<Esc>
+vmap s} c{<C-R>"}<Esc>
+vmap s( c(<C-R>")<Esc>
+vmap s) c(<C-R>")<Esc>
